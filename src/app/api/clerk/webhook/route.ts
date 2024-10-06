@@ -26,5 +26,5 @@ export const POST = async (req: Request) => {
         },
     })
 
-    return new Response('Webhook received', { status: 200 });
+    return new Response('Webhook received', { status: 201 });
 }
