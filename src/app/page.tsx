@@ -5,6 +5,7 @@ import { ModeToggle } from "@/components/theme-toggle";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import Image from "next/image";
+import { SignOutButton } from "@clerk/nextjs";
 
 const LandingPage = async () => {
   // const { userId } = auth()
@@ -80,6 +81,7 @@ const LandingPage = async () => {
             Sign Up
           </Link>
           <ModeToggle />
+          <SignOutButton />
         </div>
       </div>
     </>
