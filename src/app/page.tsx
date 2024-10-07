@@ -10,6 +10,7 @@ import {
   UserButton,
  } from "@clerk/nextjs";
 import DashboardPage from "@/components/landing-page";
+import LinkAccountButton from "@/components/link-account-button";
 
 const LandingPage = async () => {
 
@@ -32,6 +33,7 @@ const LandingPage = async () => {
             Go to Mail
           </Link>
           <ModeToggle />
+          <LinkAccountButton />
         </div>
       </>
     );
