@@ -1,6 +1,6 @@
 import { Account } from "@/lib/account";
 import { db } from "@/server/db";
-import { type NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (req: NextRequest) => {
     const {accountId, userId } = await req.json();
@@ -21,8 +21,8 @@ export const POST = async (req: NextRequest) => {
 
     const response = await account.performInitialSync()
     
-    if (!response) {
-        return NextResponse.json({message: 'Failed to sync emails'}, {status: 500})
+    if(!response) {
+        return NextResponse.json({message: 'Failed to trigger initial sync'}, {status: 500})
     }
     const {emails, deltaToken} = response;
     console.log('emails', emails)

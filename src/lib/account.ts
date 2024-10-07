@@ -21,7 +21,7 @@ export class Account {
         return response.data;
     }
 
-    async getUpdatedEmails({ deltaToken, pageToken }: { deltaToken?: string, pageToken?: string }) {
+    async getUpdatedEmails({ deltaToken, pageToken }: { deltaToken?: string, pageToken?: string }): Promise<SyncUpdatedResponse> {
         let params: Record<string, string> = {};
         if (deltaToken) {
             params.deltaToken = deltaToken;
@@ -32,10 +32,8 @@ export class Account {
         const response = await axios.get<SyncUpdatedResponse>(
             'https://api.aurinko.io/v1/email/sync/updated',
             {
-                headers: { 
-                    Authorization: `Bearer ${this.token}` 
-                },
-                params
+                params,
+                headers: { Authorization: `Bearer ${this.token}` }
             }
         );
         return response.data;
@@ -52,7 +50,6 @@ export class Account {
 
             let storedDeltaToken: string = syncResponse.syncUpdatedToken
             let updatedResponse = await this.getUpdatedEmails({ deltaToken: storedDeltaToken });
-
             if (updatedResponse.nextDeltaToken) {
                 storedDeltaToken = updatedResponse.nextDeltaToken
             }
@@ -60,11 +57,10 @@ export class Account {
 
             // Fetch all pages if there are more
             while (updatedResponse.nextPageToken) {
-                console.log('Fetching next page with token:', updatedResponse.nextPageToken);
                 updatedResponse = await this.getUpdatedEmails({ pageToken: updatedResponse.nextPageToken });
                 allEmails = allEmails.concat(updatedResponse.records);
                 if (updatedResponse.nextDeltaToken) {
-                    storedDeltaToken = updatedResponse.nextDeltaToken;
+                    storedDeltaToken = updatedResponse.nextDeltaToken
                 }
             }
 
@@ -77,7 +73,7 @@ export class Account {
 
         } catch (error) {
             if (axios.isAxiosError(error)) {
-                console.error('Axios Error:', JSON.stringify(error.response?.data, null, 2));
+                console.error('Error during sync:', JSON.stringify(error.response?.data, null, 2));
             } else {
                 console.error('Error during sync:', error);
             }
