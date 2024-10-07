@@ -2,8 +2,6 @@ import { Account } from "@/lib/account";
 import { db } from "@/server/db";
 import { type NextRequest, NextResponse } from "next/server";
 
-export const maxDuration = 300
-
 export const POST = async (req: NextRequest) => {
     const {accountId, userId } = await req.json();
     if(!accountId || !userId) {
