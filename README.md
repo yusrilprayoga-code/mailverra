@@ -1,7 +1,7 @@
-# AI Gmail - Intelligent Email Management
+# Mailverra - Intelligent Email Management
 
 ## Description
-AI Gmail is an innovative web application that revolutionizes email management using artificial intelligence. Built with modern web technologies, this platform integrates seamlessly with Gmail to provide smart email handling, automated responses, and AI-powered composing. Whether you're a busy professional looking to streamline your inbox or someone seeking to enhance their email communication, AI Gmail offers an intuitive and powerful solution to email overload.
+Mailverra is an innovative web application that revolutionizes email management using artificial intelligence. Built with modern web technologies, this platform integrates seamlessly with Gmail to provide smart email handling, automated responses, and AI-powered composing. Whether you're a busy professional looking to streamline your inbox or someone seeking to enhance their email communication, AI Gmail offers an intuitive and powerful solution to email overload.
 
 ## Features
 - 🧠 AI-powered email categorization and prioritization

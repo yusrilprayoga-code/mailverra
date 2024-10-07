@@ -8,11 +8,11 @@ import { ThemeProvider } from "next-themes";
 import { TRPCReactProvider } from "@/trpc/react";
 
 export const metadata: Metadata = {
-  title: "Ai Gmail",
+  title: "Mailverra - Ai Gmail",
   description:
-    "Ai Gmail is a web application that uses AI to help you manage your Gmail inbox.",
+    "Mailverra is a web application that uses AI to help you manage your Gmail inbox.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
-  keywords: ["Ai Gmail", "Gmail", "AI", "Inbox", "Email"],
+  keywords: ["Ai Gmail", "Gmail", "AI", "Inbox", "Email", 'Mailverra', 'Mailverra AI'],
 };
 
 export default function RootLayout({

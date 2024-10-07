@@ -115,7 +115,7 @@ const DashboardPage = () => {
         </h1>
         <div className="h-4"></div>
         <p className="mb-8 max-w-xl text-center text-xl text-gray-600 dark:text-gray-200">
-         AI-Gmail is a minimalistic, AI-powered email client that empowers
+         Mailverra is a minimalistic, AI-powered email client that empowers
           you to manage your email with ease.
         </p>
         <div className="space-x-4">
