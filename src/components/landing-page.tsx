@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowRight, Zap, Shield, Smartphone, Star, Check } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { auth } from "@clerk/nextjs/server";
 
 const DashboardPage = () => {
   const features = [
@@ -115,12 +116,12 @@ const DashboardPage = () => {
         </h1>
         <div className="h-4"></div>
         <p className="mb-8 max-w-xl text-center text-xl text-gray-600 dark:text-gray-200">
-         Mailverra is a minimalistic, AI-powered email client that empowers
-          you to manage your email with ease.
+          Mailverra is a minimalistic, AI-powered email client that empowers you
+          to manage your email with ease.
         </p>
         <div className="space-x-4">
           <Button>
-            <Link href="/mail">Get Started</Link>
+            <Link href="/mail">Go To Dashboard</Link>
           </Button>
           <Link href="https://yusrilprayoga.vercel.app">
             <Button variant="outline">Learn More</Button>
@@ -568,11 +569,9 @@ const DashboardPage = () => {
             </div>
             <div className="mt-12 flex flex-col items-center justify-between space-y-4 border-t border-gray-200 pt-8 sm:flex-row sm:space-y-0">
               <p className="text-sm text-muted-foreground">
-                {
-                    "© " +
-                    new Date().getFullYear() +
-                    " AI Gmail. All rights reserved."
-                }
+                {"© " +
+                  new Date().getFullYear() +
+                  " AI Gmail. All rights reserved."}
               </p>
               <div className="flex space-x-4">
                 <Link
@@ -580,18 +579,18 @@ const DashboardPage = () => {
                   className="text-muted-foreground hover:text-primary"
                 >
                   <span className="sr-only">Instagram</span>
-                    <svg
-                        className="h-6 w-6"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        aria-hidden="true"
-                    >
-                        <path
-                            fillRule="evenodd"
-                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-14h-7c-1.93 0-3.5 1.57-3.5 3.5v7c0 1.93 1.57 3.5 3.5 3.5h7c1.93 0 3.5-1.57 3.5-3.5v-7c0-1.93-1.57-3.5-3.5-3.5zm-7 1.5h7c.83 0 1.5.67 1.5 1.5v7c0 .83-.67 1.5-1.5 1.5h-7c-.83 0-1.5-.67-1.5-1.5v-7c0-.83.67-1.5 1.5-1.5zm7 9a4.5 4.5 0 110-9 4.5 4.5 0 010 9zm0-2a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"
-                            clipRule="evenodd"
-                        />
-                    </svg>
+                  <svg
+                    className="h-6 w-6"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-14h-7c-1.93 0-3.5 1.57-3.5 3.5v7c0 1.93 1.57 3.5 3.5 3.5h7c1.93 0 3.5-1.57 3.5-3.5v-7c0-1.93-1.57-3.5-3.5-3.5zm-7 1.5h7c.83 0 1.5.67 1.5 1.5v7c0 .83-.67 1.5-1.5 1.5h-7c-.83 0-1.5-.67-1.5-1.5v-7c0-.83.67-1.5 1.5-1.5zm7 9a4.5 4.5 0 110-9 4.5 4.5 0 010 9zm0-2a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
                 </Link>
                 <Link
                   href="#"
