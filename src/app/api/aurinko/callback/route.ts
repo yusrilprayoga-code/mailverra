@@ -16,6 +16,7 @@ export const GET = async (req: NextRequest) => {
     const code = params.get('code');
     const token = await exchangeCodeForAccessToken(code as string)
     if (!token) return NextResponse.json({ error: "Failed to fetch token" }, { status: 400 });
+
     const accountDetails = await getAccountDetails(token.accessToken)
     
     await db.account.upsert({
@@ -37,7 +38,7 @@ export const GET = async (req: NextRequest) => {
     //trigger initial sync
     waitUntil(
         axios.post(`${process.env.NEXT_PUBLIC_URL}/api/initial-sync`, 
-            { accountId: token.accountId.toString(), userId })
+            {accountId: token.accountId.toString(), userId })
             .then((response) => {
             console.log('Initial sync triggered', response.data)
         }).catch((err) => {
