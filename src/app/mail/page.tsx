@@ -1,8 +1,9 @@
 import React from 'react'
+import MailPage from './components/mail'
 
 const MailDashboard = () => {
   return (
-    <div>MailDashboard</div>
+    <MailPage />
   )
 }
 
