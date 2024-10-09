@@ -63,6 +63,7 @@ const EmailEditor = ({
     })
     
     const onGenerate = (token:string) => {
+        console.log(token)
         editor?.commands?.insertContent(token)
     }
 

@@ -5,11 +5,11 @@ import { openai } from '@ai-sdk/openai';
 import { createStreamableValue } from 'ai/rsc';
 
 export async function generateEmail(context: string, prompt:string) {
-
+    console.log(context, 'context')
     const stream = createStreamableValue('');
     (async () => {
         const { textStream } = await streamText({
-            model: openai('gpt-4o'),
+            model: openai('gpt-4o-mini'),
             prompt: `
             You are an AI email assistant embedded in an email client app. Your purpose is to help the user compose emails by providing suggestions and relevant information based on the context of their previous emails.
             
