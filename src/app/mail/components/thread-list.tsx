@@ -2,7 +2,7 @@
 
 import useThreads from "@/hooks/use-threads";
 import React, { ComponentProps } from "react";
-import { format, formatDistanceToNow, set } from "date-fns";
+import { format, formatDistanceToNow} from "date-fns";
 import { cn } from "@/lib/utils";
 import DOMPurify from "dompurify";
 import { Badge } from "@/components/ui/badge";
@@ -52,7 +52,7 @@ const ThreadList = () => {
                       <div className="flex items-center">
                         <div className="flex items-center gap-2">
                           <div className="font-semibold">
-                            {thread.emails.at(-1)?.from.name}
+                          {thread.emails.at(-1)?.from.name}
                           </div>
                         </div>
                         <div className={cn("ml-auto text-xs")}>

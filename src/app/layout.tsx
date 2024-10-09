@@ -6,6 +6,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "next-themes";
 
 import { TRPCReactProvider } from "@/trpc/react";
+import KBar from "@/components/kbar";
 
 export const metadata: Metadata = {
   title: "Mailverra - Ai Gmail",
@@ -23,7 +24,11 @@ export default function RootLayout({
       <html lang="en" className={`${GeistSans.variable}`}>
         <body>
         <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
-          <TRPCReactProvider>{children}</TRPCReactProvider>
+          <TRPCReactProvider>
+            {/* <KBar> */}
+            {children}
+            {/* </KBar> */}
+          </TRPCReactProvider>
         </ThemeProvider>
         </body>
       </html>
