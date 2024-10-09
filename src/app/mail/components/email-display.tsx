@@ -30,7 +30,7 @@ const EmailDisplay = ({ email }: Props) => {
     const isMe = account?.emailAddress === email.from.address
 
     return (
-        <div className={cn('border rounded-md p-4 cursor-pointer transition-all  hover:translate-x-2', {
+        <div className={cn('border rounded-md p-4 cursor-pointer transition-all  hover:translate-x-1', {
             'border-l-gray-900 border-l-4': isMe
         })} ref={letterRef}>
             <div className="flex items-center justify-between gap-2">

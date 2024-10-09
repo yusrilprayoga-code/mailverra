@@ -79,6 +79,7 @@
     "react-hook-form": "^7.53.0",
     "react-letter": "^0.4.0",
     "react-resizable-panels": "^2.1.4",
+    "react-select": "^5.8.1",
     "recharts": "^2.12.7",
     "server-only": "^0.0.1",
     "sonner": "^1.5.0",
