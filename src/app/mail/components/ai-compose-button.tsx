@@ -23,7 +23,7 @@ const AiComposeButton = (props: Props) => {
     const [open, setOpen] = React.useState(false);
     const [prompt , setPrompt] = React.useState('')
 
-    const aiGenerate = async () => {
+    const aiGenerate = async (prompt: string) => {
         const {output} = await generateEmail('', prompt)
         for await (const token of readStreamableValue(output)) {
             if(token) {
@@ -51,13 +51,7 @@ const AiComposeButton = (props: Props) => {
           <div className="h2"></div>
           <Textarea placeholder="Type your message here" value={prompt} onChange={(e) => setPrompt(e.target.value)}/>
             <div className="h-2"></div>
-            <Button onClick={() => {
-                aiGenerate()
-                setOpen(false)
-                setPrompt('')
-            }}>
-                Generate
-            </Button>
+            <Button onClick={() => { aiGenerate(prompt); setOpen(false); setPrompt('') }}>Generate</Button>
         </DialogHeader>
       </DialogContent>
     </Dialog>
