@@ -111,7 +111,7 @@ const DashboardPage = () => {
       <div className="absolute bottom-0 left-0 right-0 top-0 z-[-1] bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_80%)]"></div>
       <div className="relative z-[10] flex min-h-screen flex-col items-center pt-56">
         <h1 className="inline-block bg-gradient-to-r from-gray-600 to-gray-900 bg-clip-text text-center text-6xl font-bold text-transparent dark:bg-gradient-to-r dark:from-gray-200 dark:to-gray-800 dark:bg-clip-text dark:text-gray-900 dark:text-transparent">
-          The minimalistic, <br />
+          The minimalistic <br />
           AI-powered email client.
         </h1>
         <div className="h-4"></div>
