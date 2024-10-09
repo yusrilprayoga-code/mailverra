@@ -15,7 +15,7 @@ Mailverra is an innovative web application that revolutionizes email management 
 - [Next.js](https://nextjs.org/) - React framework for server-side rendering and static site generation
 - [NextAuth.js](https://next-auth.js.org/) - Authentication for Next.js
 - [Prisma](https://www.prisma.io/) - Next-generation ORM for Node.js and TypeScript
-- [Drizzle](https://github.com/drizzle-team/drizzle-orm) - Lightweight and performant ORM
+- [Neon](https://neon.tech/) - Databases
 - [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
 - [tRPC](https://trpc.io/) - End-to-end typesafe APIs made easy
 
