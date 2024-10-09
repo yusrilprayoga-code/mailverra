@@ -133,22 +133,22 @@ const DashboardPage = () => {
           </h2>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             <div className="rounded-lg border bg-white p-6 shadow-md">
-              <h3 className="mb-2 text-xl font-semibold">
+              <h3 className="mb-2 text-xl dark:text-black font-semibold">
                 AI-driven email RAG
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-black">
                 Automatically prioritize your emails with our advanced AI
                 system.
               </p>
             </div>
             <div className="rounded-lg border bg-white p-6 shadow-md">
-              <h3 className="mb-2 text-xl font-semibold">Full-text search</h3>
+              <h3 className="mb-2 text-xl font-semibold dark:text-black">Full-text search</h3>
               <p className="text-gray-600">
                 Quickly find any email with our powerful search functionality.
               </p>
             </div>
             <div className="rounded-lg border bg-white p-6 shadow-md">
-              <h3 className="mb-2 text-xl font-semibold">
+              <h3 className="mb-2 text-xl font-semibold dark:text-black">
                 Shortcut-focused interface
               </h3>
               <p className="text-gray-600">
