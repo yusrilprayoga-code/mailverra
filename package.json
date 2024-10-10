@@ -17,6 +17,7 @@
   "dependencies": {
     "@ai-sdk/openai": "^0.0.66",
     "@clerk/nextjs": "^5.7.2",
+    "@google/generative-ai": "^0.21.0",
     "@hookform/resolvers": "^3.9.0",
     "@prisma/client": "^5.20.0",
     "@radix-ui/react-accordion": "^1.2.1",

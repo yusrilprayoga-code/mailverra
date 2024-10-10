@@ -67,35 +67,37 @@ const EmailEditor = ({
     
     const aiGenerate = async (prompt: string) => {
         try {
-            console.log("Generating AI response for prompt:", prompt);
+            // console.log("Generating AI response for prompt:", prompt);
             const { output } = await generate(prompt);
     
-            console.log("Started reading from stream");
+            // console.log("Started reading from stream");
             for await (const delta of readStreamableValue(output)) {
                 console.log("Received delta:", delta);
                 if (delta) {
                     setGeneration(delta);
                 }
             }
-            console.log("Finished reading stream");
+            // console.log("Finished reading stream");
         } catch (error) {
             console.error("Error during AI generation:", error);
         }
     }
 
-    React.useEffect(() => {
-        if (!generation || !editor) return;
-        editor.commands.insertContent(generation)
-    }, [generation, editor]);
+    const handleAiCompose = (generatedText: string) => {
+        console.log("Received generated text from AiComposeButton:", generatedText);
+        if (editor) {
+            editor.commands.insertContent(generatedText);
+        }
+    };
 
   return (
-    <div>
+        <div>
         <div className="flex p-4 py-2 border-b">
             {editor && <TipTapMenuBar editor={editor} />}
         </div>
 
-        <div className='p-4 pb-0 space-y-2 '>
-            {expanded && (
+        <div className="p-4 pb-0 space-y-2">
+        {expanded && (
                 <>
                     <TagInput 
                         label='To'
@@ -114,11 +116,10 @@ const EmailEditor = ({
                     <Input id='subject' placeholder='Subject' value={subject} onChange={(e) => setSubject(e.target.value)} />
                 </>
             )}
-
-            <div className='flex items-center gap-2'>
+            <div className="flex items-center gap-2">
                 <div className="cursor-pointer" onClick={() => setExpanded(e => !e)}>
-                    <span className='text-green-600 font-medium'>
-                        Draft {""}
+                    <span className="text-green-600 font-medium">
+                        Draft{' '}
                     </span>
                     <span>
                         to {to.join(', ')}
@@ -126,28 +127,28 @@ const EmailEditor = ({
                 </div>
                 <AiComposeButton
                     isComposing={defaultToolbarExpanded}
-                    onGenerate={setGeneration}
+                    onGenerate={handleAiCompose}
                 />
             </div>
         </div>
 
         <div className="prose w-full px-4">
-                <EditorContent value={value} editor={editor} placeholder="Write your email here..." />
-            </div>
-            <Separator />
-            <div className="py-3 px-4 flex items-center justify-between">
-                <span className="text-sm">
-                    Tip: Press{" "}
-                    <kbd className="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">
-                        Cmd + J
-                    </kbd>{" "}
-                    for AI autocomplete
-                </span>
-                <Button onClick={async () => { editor?.commands.clearContent(); await handleSend(value) }}>
-                    Send
-                </Button>
-            </div>
+            <EditorContent value={value} editor={editor} placeholder="Write your email here..." />
         </div>
+        <Separator />
+        <div className="py-3 px-4 flex items-center justify-between">
+            <span className="text-sm">
+                Tip: Press{" "}
+                <kbd className="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">
+                    Cmd + J
+                </kbd>{" "}
+                for AI autocomplete
+            </span>
+            <Button onClick={async () => { editor?.commands.clearContent(); await handleSend(value) }}>
+                Send
+            </Button>
+        </div>
+    </div>
   )
 }
 

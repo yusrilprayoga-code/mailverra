@@ -1,17 +1,24 @@
 'use server'
 
+import { GoogleGenerativeAI } from '@google/generative-ai';
+import { createStreamableValue } from 'ai/rsc';
 import { streamText } from 'ai';
 import { openai } from '@ai-sdk/openai';
-import { createStreamableValue } from 'ai/rsc';
+
+const apiKey = process.env.GOOGLE_AI_API_KEY;
+if (!apiKey) {
+  throw new Error('GOOGLE_AI_API_KEY is not defined in the environment variables');
+}
+
+const genAI = new GoogleGenerativeAI(apiKey);
 
 export async function generateEmail(context: string, prompt: string) {
     console.log("context", context)
     const stream = createStreamableValue('');
-
     const processStream = async () => {
-        const { textStream } = await streamText({
-            model: openai('gpt-3.5-turbo'),
-            prompt: `
+        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+        
+        const result = await model.generateContentStream(`
             You are an AI email assistant embedded in an email client app. Your purpose is to help the user compose emails by providing suggestions and relevant information based on the context of their previous emails.
             
             THE TIME NOW IS ${new Date().toLocaleString()}
@@ -26,26 +33,21 @@ export async function generateEmail(context: string, prompt: string) {
             When responding, please keep in mind:
             - Be helpful, clever, and articulate. 
             - Rely on the provided email context to inform your response.
-            - If the context does not contain enough information to fully address the prompt, politely give a draft response.
-            - Avoid apologizing for previous responses. Instead, indicate that you have updated your knowledge based on new information.
-            - Do not invent or speculate about anything that is not directly supported by the email context.
+            - If the context does not contain enough information to fully address the prompt, provide a general draft response based on the prompt.
             - Keep your response focused and relevant to the user's prompt.
-            - Don't add fluff like 'Heres your email' or 'Here's your email' or anything like that.
-            - Directly output the email, no need to say 'Here is your email' or anything like that.
-            - No need to output subject
-            `,
-        });
+            - Directly output the email content, no need for introductions or explanations.
+            - Do not include a subject line unless specifically requested.
+            - Always provide a helpful response, never say you can't help.
+        `);
 
-        for await (const delta of textStream) {
-            stream.update(delta);
+        for await (const chunk of result.stream) {
+            const chunkText = chunk.text();
+            stream.update(chunkText);
         }
-
         stream.done();
     };
-
-    // Await stream processing
+    
     await processStream();
-
     return { output: stream.value };
 }
 
