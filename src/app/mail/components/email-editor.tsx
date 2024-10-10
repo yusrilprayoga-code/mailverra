@@ -3,7 +3,6 @@ import React from 'react'
 import {EditorContent, useEditor} from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import {Text} from '@tiptap/extension-text'
-import EditorMenuBar from './editor-menubar'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 import TagInput from './tag-input'
@@ -11,6 +10,7 @@ import { Input } from '@/components/ui/input'
 import AiComposeButton from './ai-compose-button'
 import { readStreamableValue } from 'ai/rsc'
 import { generate } from './action'
+import TipTapMenuBar from './editor-menubar'
 
 type Props = {
     subject: string
@@ -80,18 +80,18 @@ const EmailEditor = ({
             console.log("Finished reading stream");
         } catch (error) {
             console.error("Error during AI generation:", error);
-            alert("An error occurred while generating the email. Please try again.");
         }
     }
-    
 
-    if(!editor) return null
-
+    React.useEffect(() => {
+        if (!generation || !editor) return;
+        editor.commands.insertContent(generation)
+    }, [generation, editor]);
 
   return (
     <div>
-        <div className='p-4 py-2 flex border-b'>
-            <EditorMenuBar editor={editor} />
+        <div className="flex p-4 py-2 border-b">
+            {editor && <TipTapMenuBar editor={editor} />}
         </div>
 
         <div className='p-4 pb-0 space-y-2 '>

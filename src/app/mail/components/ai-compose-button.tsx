@@ -31,6 +31,8 @@ const AiComposeButton = (props: Props) => {
           props.onGenerate(delta);
         }
       }
+
+      props.onGenerate("\n");
     } catch (error) {
       console.error("Error generating email:", error);
     }

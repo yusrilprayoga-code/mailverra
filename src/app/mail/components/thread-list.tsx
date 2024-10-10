@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import DOMPurify from "dompurify";
 import { Badge } from "@/components/ui/badge";
 import { atom } from "jotai";
+import { mails } from "../data";
 
 export const threadIdAtom = atom<string | null>(null);
 
@@ -30,10 +31,12 @@ const ThreadList = () => {
       <div className="flex flex-col gap-2 p-4 pt-0">
         {Object.entries(grouptedThreads ?? {}).map(([date, threads]) => {
           return (
+            
             <React.Fragment key={date}>
               <div className="mt-4 text-xs font-medium text-muted-foreground first:mt-0">
                 {date}
               </div>
+
               {threads.map((thread) => {
                 return (
                   <button

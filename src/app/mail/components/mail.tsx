@@ -13,19 +13,43 @@ import { AccountSwitcher } from "./account-switcher";
 import Sidebar from "./sidebar";
 import ThreadList from "./thread-list";
 import ThreadDisplay from "./thread-display";
+import AiComposeButton from "./ai-compose-button";
+import { generate } from "./action";
+import { readStreamableValue } from "ai/rsc";
 
 type Props = {
   defaultLayout: number[] | undefined;
   navCollapsedSize: number;
   defaultCollapsed?: boolean;
+  defaultToolbarExpanded?: boolean
 };
 
 const MailPage = ({
   defaultLayout = [20, 32, 48],
   navCollapsedSize,
   defaultCollapsed = false,
+  defaultToolbarExpanded,
 }: Props) => {
   const [collapsed, setCollapsed] = React.useState(defaultCollapsed);
+  const [generation, setGeneration] = React.useState('');
+
+//   const aiGenerate = async (prompt: string) => {
+//     try {
+//         console.log("Generating AI response for prompt:", prompt);
+//         const { output } = await generate(prompt);
+
+//         console.log("Started reading from stream");
+//         for await (const delta of readStreamableValue(output)) {
+//             console.log("Received delta:", delta);
+//             if (delta) {
+//                 setGeneration(delta);
+//             }
+//         }
+//         console.log("Finished reading stream");
+//     } catch (error) {
+//         console.error("Error during AI generation:", error);
+//     }
+// }
 
   return (
     <TooltipProvider delayDuration={0}>
@@ -81,7 +105,10 @@ const MailPage = ({
             <div className="flex-1"></div>
 
             {/* Ai */}
-            Ask Ai
+            {/* <AiComposeButton
+                isComposing={defaultToolbarExpanded}
+                onGenerate={setGeneration}
+              /> */}
 
           </div>
         </ResizablePanel>
@@ -110,6 +137,7 @@ const MailPage = ({
             Search Bar
             {/* email list */}
             <TabsContent value="inbox">
+              {/* <ThreadList /> */}
               <ThreadList />
             </TabsContent>
             <TabsContent value="Done">
