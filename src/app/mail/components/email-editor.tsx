@@ -9,6 +9,8 @@ import { Button } from '@/components/ui/button'
 import TagInput from './tag-input'
 import { Input } from '@/components/ui/input'
 import AiComposeButton from './ai-compose-button'
+import { readStreamableValue } from 'ai/rsc'
+import { generate } from './action'
 
 type Props = {
     subject: string
@@ -42,12 +44,13 @@ const EmailEditor = ({
 }: Props) => {
     const [value, setValue] = React.useState<string>('')
     const [expanded, setExpanded] = React.useState(defaultToolbarExpanded ?? false)
+    const [generation, setGeneration] = React.useState('');
 
     const customText = Text.extend({
         addKeyboardShortcuts() {
             return {
                 "Meta-j": () => {
-                   onGenerate(this.editor.getText());
+                    aiGenerate(this.editor.getText());
                     return true;
                 },
             };
@@ -57,19 +60,20 @@ const EmailEditor = ({
     const editor = useEditor({
         autofocus: false,
         extensions: [StarterKit, customText],
-        editorProps: {
-            attributes: {
-                placeholder: "Write your email here..."
-            }
-        },
-        onUpdate: ({ editor, transaction }) => {
+        onUpdate: ({ editor }) => {
             setValue(editor.getHTML())
         }
-    });
+    })
     
-    const onGenerate = (token:string) => {
-        console.log(token)
-        editor?.commands?.insertContent(token)
+    const aiGenerate = async (prompt: string) => {
+        const { output } = await generate(prompt)
+
+        for await (const delta of readStreamableValue(output)) {
+            if (delta) {
+                setGeneration(delta);
+            }
+        }
+
     }
 
     if(!editor) return null
@@ -113,7 +117,7 @@ const EmailEditor = ({
                 </div>
                 <AiComposeButton
                     isComposing={defaultToolbarExpanded}
-                    onGenerate={onGenerate}
+                    onGenerate={setGeneration}
                 />
             </div>
         </div>

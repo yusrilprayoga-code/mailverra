@@ -9,42 +9,44 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { BotIcon } from "lucide-react";
+import { Bot } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { generateEmail } from "./action";
 import { readStreamableValue } from "ai/rsc";
 
 type Props = {
-  isComposing: boolean;
-  onGenerate: (token: string) => void;
+  onGenerate: (value: string) => void;
+  isComposing?: boolean;
 };
 
 const AiComposeButton = (props: Props) => {
-  const [open, setOpen] = React.useState(false);
   const [prompt, setPrompt] = React.useState("");
+  const [open, setOpen] = React.useState(false);
 
   const aiGenerate = async () => {
     const { output } = await generateEmail("", prompt);
-    for await (const token of readStreamableValue(output)) {
-      if (token) {
-        console.log(token);
-        props.onGenerate(token);
+    for await (const delta of readStreamableValue(output)) {
+      if (delta) {
+        props.onGenerate(delta);
       }
     }
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>
-        <Button size="icon" variant={"outline"} onClick={() => setOpen(true)}>
-          <BotIcon className="size-4" />
+        <Button onClick={() => setOpen(true)} size="icon" variant={"outline"}>
+          <Bot className="size-5" />
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>AI Smart Compose</DialogTitle>
-          <DialogDescription>Generate a smart reply with AI</DialogDescription>
-          <div className="h2"></div>
+          <DialogTitle>AI Compose</DialogTitle>
+          <DialogDescription>
+            AI will compose an email based on the context of your previous
+            emails.
+          </DialogDescription>
+          <div className="h-2"></div>
           <Textarea
             placeholder="What would you like to compose?"
             value={prompt}
@@ -53,9 +55,9 @@ const AiComposeButton = (props: Props) => {
           <div className="h-2"></div>
           <Button
             onClick={() => {
-                setOpen(false);
-                setPrompt("");
-                aiGenerate();
+              aiGenerate();
+              setOpen(false);
+              setPrompt("");
             }}
           >
             Generate
