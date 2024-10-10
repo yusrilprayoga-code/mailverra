@@ -53,9 +53,9 @@ const AiComposeButton = (props: Props) => {
           <div className="h-2"></div>
           <Button
             onClick={() => {
-              aiGenerate();
-              setOpen(false);
-              setPrompt("");
+                setOpen(false);
+                setPrompt("");
+                aiGenerate();
             }}
           >
             Generate
