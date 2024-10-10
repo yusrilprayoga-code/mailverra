@@ -4,7 +4,6 @@ import React from "react";
 import EmailEditor from "./email-editor";
 import { api, RouterOutputs } from "@/trpc/react";
 import useThreads from "@/hooks/use-threads";
-import { set } from "date-fns";
 
 const ReplyBox = () => {
   const { threadId, accountId } = useThreads();

@@ -41,26 +41,31 @@ const EmailEditor = ({
     defaultToolbarExpanded = false
 }: Props) => {
     const [value, setValue] = React.useState<string>('')
-    const [expanded, setExpanded] = React.useState<boolean>(defaultToolbarExpanded)
+    const [expanded, setExpanded] = React.useState(defaultToolbarExpanded ?? false)
 
-    const CustomText = Text.extend({
+    const customText = Text.extend({
         addKeyboardShortcuts() {
             return {
-                'Meta-j' : () => {
-                    console.log('Meta-j')
-                    return true
-                }
-            }
-        }
-    })
+                "Meta-j": () => {
+                   onGenerate(this.editor.getText());
+                    return true;
+                },
+            };
+        },
+    });
 
     const editor = useEditor({
         autofocus: false,
-        extensions: [StarterKit, CustomText],
-        onUpdate: ({ editor }) => {
+        extensions: [StarterKit, customText],
+        editorProps: {
+            attributes: {
+                placeholder: "Write your email here..."
+            }
+        },
+        onUpdate: ({ editor, transaction }) => {
             setValue(editor.getHTML())
         }
-    })
+    });
     
     const onGenerate = (token:string) => {
         console.log(token)
@@ -98,7 +103,7 @@ const EmailEditor = ({
             )}
 
             <div className='flex items-center gap-2'>
-                <div className='cursor-pointer' onClick={() => setExpanded(!expanded)}>
+                <div className="cursor-pointer" onClick={() => setExpanded(e => !e)}>
                     <span className='text-green-600 font-medium'>
                         Draft {""}
                     </span>
@@ -113,28 +118,23 @@ const EmailEditor = ({
             </div>
         </div>
 
-        <div className='prose w-full px-4'>
-            <EditorContent editor={editor} value={value} />
+        <div className="prose w-full px-4">
+                <EditorContent value={value} editor={editor} placeholder="Write your email here..." />
+            </div>
+            <Separator />
+            <div className="py-3 px-4 flex items-center justify-between">
+                <span className="text-sm">
+                    Tip: Press{" "}
+                    <kbd className="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">
+                        Cmd + J
+                    </kbd>{" "}
+                    for AI autocomplete
+                </span>
+                <Button onClick={async () => { editor?.commands.clearContent(); await handleSend(value) }}>
+                    Send
+                </Button>
+            </div>
         </div>
-
-        <Separator />
-
-        <div className='py-3 px-4 flex items-center justify-between'>
-            <span className='text-sm'>
-                Tip: Press {" "}
-                <kbd className='px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg'>
-                    Cmd + J
-                </kbd>
-                for AI autocomplete
-            </span>
-            <Button onClick={ async () => {
-                editor?.commands?.clearContent()
-                await handleSend(value)
-            }} disabled={isSending}>
-                Send
-            </Button>
-        </div>
-    </div>
   )
 }
 
