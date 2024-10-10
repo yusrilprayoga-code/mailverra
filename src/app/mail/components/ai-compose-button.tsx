@@ -24,11 +24,15 @@ const AiComposeButton = (props: Props) => {
   const [open, setOpen] = React.useState(false);
 
   const aiGenerate = async () => {
-    const { output } = await generateEmail("", prompt);
-    for await (const delta of readStreamableValue(output)) {
-      if (delta) {
-        props.onGenerate(delta);
+    try {
+      const { output } = await generateEmail("", prompt);
+      for await (const delta of readStreamableValue(output)) {
+        if (delta) {
+          props.onGenerate(delta);
+        }
       }
+    } catch (error) {
+      console.error("Error generating email:", error);
     }
   };
 

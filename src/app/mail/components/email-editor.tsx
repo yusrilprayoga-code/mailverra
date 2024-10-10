@@ -66,14 +66,21 @@ const EmailEditor = ({
     })
     
     const aiGenerate = async (prompt: string) => {
-        const { output } = await generate(prompt)
-
-        for await (const delta of readStreamableValue(output)) {
-            if (delta) {
-                setGeneration(delta);
+        try {
+            console.log("Generating AI response for prompt:", prompt);
+            const { output } = await generate(prompt);
+    
+            console.log("Started reading from stream");
+            for await (const delta of readStreamableValue(output)) {
+                console.log("Received delta:", delta);
+                if (delta) {
+                    setGeneration(delta);
+                }
             }
+            console.log("Finished reading stream");
+        } catch (error) {
+            console.error("Error during AI generation:", error);
         }
-
     }
 
     if(!editor) return null
