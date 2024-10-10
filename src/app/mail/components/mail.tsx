@@ -84,7 +84,7 @@ const MailPage = ({
             collapsed && "min-w-[50px] transition-all duration-300 ease-in-out",
           )}
         >
-          <div className="flex h-full flex-1 flex-col">
+          <div className="flex h-full flex-1 flex-col mt-1">
             <div
               className={cn(
                 "item-center flex h-[52px] justify-between",
@@ -109,6 +109,7 @@ const MailPage = ({
                 isComposing={defaultToolbarExpanded}
                 onGenerate={setGeneration}
               /> */}
+            {/* Ask Ai */}
 
           </div>
         </ResizablePanel>

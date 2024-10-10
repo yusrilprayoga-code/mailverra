@@ -2,6 +2,8 @@ import React from "react";
 // import MailPage from './components/mail'
 import dynamic from "next/dynamic";
 import { ModeToggle } from "@/components/theme-toggle";
+import { UserButton } from "@clerk/nextjs";
+import ComposeButton from "./components/compose-button";
 
 const MailPage = dynamic(
   () => {
@@ -16,7 +18,11 @@ const MailDashboard = () => {
   return (
     <>
       <div className="absolute bottom-4 left-4">
-        <ModeToggle />
+        <div className="flex items-center gap-2">
+          <UserButton />
+          <ModeToggle />
+          <ComposeButton />
+        </div>
       </div>
       <MailPage
         defaultLayout={[20, 32, 48]}
