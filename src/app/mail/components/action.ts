@@ -8,7 +8,7 @@ export async function generateEmail(context: string, prompt: string) {
     console.log("context", context)
     const stream = createStreamableValue('');
 
-    (async () => {
+    const processStream = async () => {
         const { textStream } = await streamText({
             model: openai('gpt-3.5-turbo'),
             prompt: `
@@ -41,7 +41,10 @@ export async function generateEmail(context: string, prompt: string) {
         }
 
         stream.done();
-    })();
+    };
+
+    // Await stream processing
+    await processStream();
 
     return { output: stream.value };
 }
@@ -50,7 +53,8 @@ export async function generate(input: string) {
     const stream = createStreamableValue('');
 
     console.log("input", input);
-    (async () => {
+
+    const processStream = async () => {
         const { textStream } = await streamText({
             model: openai('gpt-3.5-turbo'),
             prompt: `
@@ -79,7 +83,10 @@ export async function generate(input: string) {
         }
 
         stream.done();
-    })();
+    };
+
+    // Await stream processing
+    await processStream();
 
     return { output: stream.value };
 }
