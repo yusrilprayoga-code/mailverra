@@ -80,8 +80,10 @@ const EmailEditor = ({
             console.log("Finished reading stream");
         } catch (error) {
             console.error("Error during AI generation:", error);
+            alert("An error occurred while generating the email. Please try again.");
         }
     }
+    
 
     if(!editor) return null
 
