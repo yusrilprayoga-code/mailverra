@@ -78,7 +78,7 @@ const LandingPage = async () => {
               Dashboard
             </Link>
             <Link
-              href="/mail"
+              href="/pricing"
               className="text-sm text-black hover:text-blue-800 hover:underline dark:text-blue-400 dark:hover:text-blue-300"
             >
               Pricing

@@ -351,7 +351,11 @@ const DashboardPage = () => {
                       </ul>
                     </CardContent>
                     <CardFooter>
-                      <Button className="w-full">Subscribe Now</Button>
+                      <Button className="w-full">
+                        <Link href="/pricing">
+                          Subscribe Now
+                        </Link>
+                      </Button>
                     </CardFooter>
                   </Card>
                 </motion.div>
