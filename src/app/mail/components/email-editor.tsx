@@ -60,7 +60,7 @@ const EmailEditor = ({
 
     const editor = useEditor({
         autofocus: false,
-        extensions: [StarterKit, customText],
+        extensions: [StarterKit, customText,],
         onUpdate: ({ editor }) => {
             setValue(editor.getHTML());
         }
