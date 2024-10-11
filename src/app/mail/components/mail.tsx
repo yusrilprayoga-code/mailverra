@@ -16,6 +16,7 @@ import ThreadDisplay from "./thread-display";
 import AiComposeButton from "./ai-compose-button";
 import { generate } from "./action";
 import { readStreamableValue } from "ai/rsc";
+import SearchBar from "./search-inbox";
 
 type Props = {
   defaultLayout: number[] | undefined;
@@ -135,7 +136,7 @@ const MailPage = ({
             </div>
             <Separator />
             {/* search bar */}
-            Search Bar
+              <SearchBar />
             {/* email list */}
             <TabsContent value="inbox">
               {/* <ThreadList /> */}
