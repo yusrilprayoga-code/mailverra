@@ -163,7 +163,7 @@ const DashboardPage = () => {
           alt="demo"
           width={1000}
           height={1000}
-          className="my-12 h-auto w-[70vw] rounded-md border shadow-xl transition-all hover:scale-[102%] hover:shadow-2xl"
+          className="my-12 h-full w-[80vw] rounded-md border shadow-xl transition-all hover:scale-[102%] hover:shadow-2xl"
         />
         <section className="bg-background py-24">
           <div className="container px-4 md:px-6">
@@ -607,7 +607,7 @@ const DashboardPage = () => {
                   </svg>
                 </Link>
                 <Link
-                  href="#"
+                  href="https://github.com/yusrilprayoga-code"
                   className="text-muted-foreground hover:text-primary"
                 >
                   <span className="sr-only">GitHub</span>
