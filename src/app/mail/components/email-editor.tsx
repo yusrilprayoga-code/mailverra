@@ -133,7 +133,7 @@ const EmailEditor = ({
         </div>
 
         <div className="prose w-full px-4">
-            <EditorContent value={value} editor={editor} placeholder="Write your email here..." />
+            <EditorContent value={value} editor={editor} placeholder="Write your text here..." />
         </div>
         <Separator />
         <div className="py-3 px-4 flex items-center justify-between">

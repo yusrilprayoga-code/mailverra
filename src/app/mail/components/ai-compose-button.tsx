@@ -55,7 +55,7 @@ const AiComposeButton = (props: Props) => {
       props.onGenerate("\n");
       // console.log("aiGenerate completed successfully");
     } catch (error) {
-      console.error("Error in aiGenerate:", error);
+      throw new Error('An Error occured whike gerenating the Ai. Please try again')
       // setError("An error occurred while generating the email. Please try again.");
     } finally {
       setIsGenerating(false);
