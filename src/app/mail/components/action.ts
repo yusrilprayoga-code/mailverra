@@ -11,13 +11,13 @@ if (!apiKey) {
 }
 
 const genAI = new GoogleGenerativeAI(apiKey);
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 export async function generateEmail(context: string, prompt: string) {
     console.log("context", context)
     const stream = createStreamableValue('');
     const processStream = async () => {
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-        
+
         const result = await model.generateContentStream(`
             You are an AI email assistant embedded in an email client app. Your purpose is to help the user compose emails by providing suggestions and relevant information based on the context of their previous emails.
             

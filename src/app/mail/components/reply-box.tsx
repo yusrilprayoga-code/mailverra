@@ -42,8 +42,10 @@ const Component = ({replyDetails}: {replyDetails:RouterOutputs['account']['getRe
 
     }, [threadId, replyDetails])
 
+    const sendEmail = api.account.sendEmail.useMutation()
+
     const handleSend = async (value:string) => {
-        console.log('send')
+        console.log(value)
     }
 
     return (
