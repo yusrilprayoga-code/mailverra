@@ -7,6 +7,10 @@ const isPublicRoute = createRouteMatcher(
         '/',
         '/api/clerk/webhook(.*)',
         '/api/initial-sync(.*)',
+        '/terms-of-service',
+        '/privacy',
+        '/cookie-policy',
+        '/documentation',
     ]
 )
 
