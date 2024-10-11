@@ -513,7 +513,7 @@ const DashboardPage = () => {
                 <ul className="space-y-2">
                   <li>
                     <Link
-                      href="#"
+                      href="http://yusrilprayoga.vercel.app"
                       className="text-muted-foreground hover:text-primary"
                     >
                       Blog
@@ -521,7 +521,7 @@ const DashboardPage = () => {
                   </li>
                   <li>
                     <Link
-                      href="#"
+                      href="/documentation"
                       className="text-muted-foreground hover:text-primary"
                     >
                       Documentation
@@ -542,7 +542,7 @@ const DashboardPage = () => {
                 <ul className="space-y-2">
                   <li>
                     <Link
-                      href="#"
+                      href="/privacy"
                       className="text-muted-foreground hover:text-primary"
                     >
                       Privacy Policy
@@ -550,7 +550,7 @@ const DashboardPage = () => {
                   </li>
                   <li>
                     <Link
-                      href="#"
+                      href="/terms-of-service"
                       className="text-muted-foreground hover:text-primary"
                     >
                       Terms of Service
@@ -558,7 +558,7 @@ const DashboardPage = () => {
                   </li>
                   <li>
                     <Link
-                      href="#"
+                      href="cookie-policy"
                       className="text-muted-foreground hover:text-primary"
                     >
                       Cookie Policy
