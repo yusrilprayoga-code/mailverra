@@ -36,13 +36,12 @@ export default function Component() {
               Introduction
             </h1>
             <p className="text-lg text-muted-foreground">
-              Re-usable components built using Radix UI and Tailwind CSS.
+              Mailverra is a web application that help a users to manage their email with AI.
             </p>
             <div className="prose max-w-none">
               <p>
-                This is <strong>NOT</strong> a component library. It&apos;s a
-                collection of re-usable components that you can copy and paste
-                into your apps.
+                This is a documentation site for Mailverra to help you get
+                started.
               </p>
               <p>
                 What do you mean by not a component library? I mean you do not
@@ -66,6 +65,14 @@ export default function Component() {
             </p>
             <div className="prose max-w-none">
               <p>Installation instructions would go here...</p>
+              <p>
+                First you need to clone the repository and install the
+                dependencies.
+              </p>
+              <p>
+                Second you need to run the development server to see the
+                components. You can also build the components for production.
+              </p>
             </div>
           </>
         );
